@@ -15,7 +15,7 @@ MIN_DUTY = 3278  # Minimum allowed duty cycle
 MAX_DUTY = 6556  # Maximum allowed duty cycle
 
 # Set up the button on GPIO 15
-button = Pin(15, Pin.IN, Pin.PULL_UP)  # Configure pin 15 as input with pull-up resistor
+button = Pin(27, Pin.IN, Pin.PULL_UP)  # Configure pin 15 as input with pull-up resistor
 
 def set_motor_speed(duty_cycle):
     # Clamp the duty cycle between the min and max allowed values
@@ -51,7 +51,7 @@ def read_potentiometer():
             color_range = int((motor_speed / 50) * 255)
         else:
             # Map motor_speed (-50 to 0) to color_range (0 to 255, using the green channel)
-            color_range = int(((motor_speed + 50) / 50) * 255)
+            color_range = int(((motor_speed *-1) / 50) * 255)
 
         # If the button is pressed, divide the color range by 2
         if button.value() == 0:
