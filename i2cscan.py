@@ -1,9 +1,7 @@
-# i2cscan.py
 # Scanner i2c en MicroPython | MicroPython i2c scanner
+from machine import Pin, I2C
 
-from oled_display import display_text
-import machine
-i2c = machine.I2C(0, scl=machine.Pin(13), sda=machine.Pin(12))
+i2c = I2C(1, scl=Pin(7), sda=Pin(6), freq=100000)
 
 print('Scan i2c bus...')
 devices = i2c.scan()
@@ -11,6 +9,7 @@ devices = i2c.scan()
 if len(devices) == 0:
   print("No i2c device !")
 else:
+    
   print('i2c devices found:',len(devices))
 
   for device in devices:  

@@ -4,12 +4,14 @@ from machine import Pin, I2C
 import ssd1306
 
 # Initialize the display once
-def init_display(sda_pin=12, scl_pin=13, i2c_freq=400000, i2c_addr=0x3C, width=128, height=64):
+def init_display(w, h, i2c):
     # Set up I2C with GPIO 12 (SDA) and GPIO 13 (SCL)
-    i2c = I2C(0, scl=Pin(scl_pin), sda=Pin(sda_pin), freq=i2c_freq)
+    #i2c = I2C(1, scl=Pin(scl_pin), sda=Pin(sda_pin), freq=i2c_freq)
+    #i2c = I2C(1, sda=Pin(6), scl=Pin(7), freq=400000)
+
 
     # Initialize the display
-    oled = ssd1306.SSD1306_I2C(width, height, i2c, addr=i2c_addr)
+    oled = ssd1306.SSD1306_I2C(w, h, i2c)
     
     # Clear the display once during initialization
     oled.fill(0)
@@ -27,4 +29,3 @@ def display_text(oled, text):
 
     # Show the updated display
     oled.show()
-
